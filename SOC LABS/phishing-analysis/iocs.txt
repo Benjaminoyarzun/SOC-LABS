@@ -1,0 +1,12 @@
+Indicators of Compromise (IOCs)
+
+Sender:
+- IHKH0MFEWW@Kodehexa.net
+
+Themes:
+- PayPal impersonation
+- Reward/prize phishing lure
+
+Observed Indicators:
+- Suspicious embedded links
+- Non-legitimate sender domain

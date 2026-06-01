@@ -1,0 +1,17 @@
+Indicators of Compromise (IOCs)
+
+IPs:
+- 10.0.0.130
+- 10.0.0.131
+- 10.0.0.133
+
+Artifacts:
+- PSEXESVC.EXE
+- IPC$
+- ADMIN$
+- DCERPC
+- SVCCTL
+
+Protocols:
+- SMB
+- TCP/445

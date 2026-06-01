@@ -1,0 +1,41 @@
+# Authentication Logs
+
+grep sshd auth.log
+
+grep "Failed password" auth.log
+
+grep "Accepted password" auth.log
+
+grep sudo auth.log
+
+grep su auth.log
+
+grep passwd auth.log
+
+# Count failed logins
+
+grep "Failed password" auth.log | wc -l
+
+# Search by IP
+
+grep "209.59.222.166" auth.log
+
+# Search by user
+
+grep "user1" auth.log
+
+# Follow log in real time
+
+tail -f auth.log
+
+# Process filtering
+
+ps aux
+
+ps aux | grep apache
+
+# Network connections
+
+ss -tnlp
+
+netstat -tulpn

@@ -1,0 +1,12 @@
+Findings
+
+The investigation identified multiple indicators consistent with PsExec-mediated lateral movement within the environment.
+
+Observed activity included:
+- Sequential SYN scanning activity
+- SMB communications between internal hosts
+- Access requests to IPC$ and ADMIN$ administrative shares
+- SMB Write Requests involving PSEXESVC.EXE
+- DCERPC and SVCCTL traffic associated with remote service creation
+
+The evidence strongly supports remote administrative execution and lateral movement activity originating from host 10.0.0.130 toward host 10.0.0.133.

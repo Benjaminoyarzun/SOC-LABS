@@ -1,0 +1,13 @@
+Findings
+
+Multiple suspicious SSH authentication events were identified involving external IP addresses.
+
+The investigation revealed:
+- Failed and successful SSH logins
+- Privilege escalation activity through sudo/su
+- Root password modifications
+- Creation of an additional UID=0 privileged account
+- Suspicious reverse DNS inconsistencies
+- Administrative manipulation of Apache services
+
+The evidence strongly suggests unauthorized privileged access and persistence establishment on the affected host.

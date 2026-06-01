@@ -1,0 +1,47 @@
+# SMB traffic
+
+smb
+
+# SMB2 traffic
+
+smb2
+
+# HTTP
+
+http
+
+# DNS
+
+dns
+
+# TCP SYN packets
+
+tcp.flags.syn == 1
+
+# SMB file operations
+
+smb2.create
+
+smb2.write
+
+# Service Control Manager activity
+
+dcerpc
+
+svcctl
+
+# SMB Administrative Shares
+
+frame contains "IPC$"
+
+frame contains "ADMIN$"
+
+# Host specific traffic
+
+ip.addr == 10.0.0.130
+
+ip.addr == 10.0.0.133
+
+# TCP port 445 (SMB)
+
+tcp.port == 445

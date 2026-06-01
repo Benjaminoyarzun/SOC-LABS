@@ -1,0 +1,40 @@
+SOC Investigation Workflow
+
+1. Identify available evidence
+   - Logs
+   - PCAPs
+   - Alerts
+   - Emails
+
+2. Build initial timeline
+   - First event
+   - Authentication activity
+   - Service activity
+   - Network activity
+
+3. Identify anomalies
+   - Failed logins
+   - New accounts
+   - Password changes
+   - Remote execution
+
+4. Correlate evidence
+   - User activity
+   - Source IPs
+   - Destination systems
+   - Time correlation
+
+5. Develop hypothesis
+   - Initial access
+   - Privilege escalation
+   - Persistence
+   - Lateral movement
+
+6. Validate hypothesis
+   - Additional logs
+   - Network evidence
+   - Related events
+
+7. Assign severity
+
+8. Recommend escalation or closure

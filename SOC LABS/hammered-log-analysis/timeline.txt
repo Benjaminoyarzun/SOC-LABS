@@ -1,0 +1,34 @@
+Timeline
+
+Mar 29 13:24:07
+- Successful SSH login for user3 from 10.0.1.2
+
+Mar 29 13:24:25
+- sudo/su activity resulting in root access
+
+Mar 29 13:27:22
+- Root password modified
+
+Mar 29 13:27:26
+- Successful SSH login as root
+
+Apr 19 14:47:40
+- Apache service stopped by user1 using sudo
+
+Apr 19 14:47:41
+- Apache processes forcefully terminated
+
+Apr 19 14:47:43
+- Apache restarted
+
+Apr 19 22:37:20
+- Reverse DNS inconsistency flagged as POSSIBLE BREAK-IN ATTEMPT
+
+Apr 19 22:37:24
+- Successful remote SSH authentication as root
+
+Apr 19 22:38:00
+- New privileged account "packet" created with UID=0
+
+Apr 19 22:38:09
+- Password assigned to newly created privileged account

@@ -1,0 +1,7 @@
+Recommendations
+
+- Remove the phishing email from the affected mailbox
+- Block sender domain and associated URLs
+- Educate users regarding phishing indicators
+- Review email filtering policies
+- Monitor for additional delivery attempts

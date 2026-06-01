@@ -1,0 +1,122 @@
+ Case: Hammered — CyberDefenders
+
+## Initial Log Review
+
+## user.log
+
+Reviewed `user.log` for correlated user activity associated with the suspicious events.
+
+No relevant indicators or anomalous behavior were identified during the reviewed timeframe.
+
+
+
+## auth.log Findings
+
+Multiple failed SSH authentication attempts targeting privileged accounts were identified from external IP addresses.
+
+Several successful SSH authentications were also observed shortly after failed authentication attempts from the same source hosts.
+
+Additional privileged activity included:
+
+* `sudo` usage
+* `su` usage
+* root password modifications
+* privileged account creation
+* remote root authentications
+
+The observed behavior is consistent with unauthorized privileged access and likely persistence establishment.
+
+---
+
+## Apache Weblog Findings
+
+Apache weblog analysis identified:
+
+* anomalous HTTP requests associated with proxy validation/scanning behavior
+* repeated access attempts to administrative resources such as `/wp-admin/`
+* multiple instances of privileged Apache service manipulation activity performed by `user1`
+
+A significant portion of observed `/feed/` polling traffic and WordPress cron activity appeared consistent with legitimate automated behavior.
+
+---
+
+# Incident Timeline
+
+| Date / Time        | Event                                                 | Observations                                                                  |
+| ------------------ | ----------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Mar 29 13:24:07    | Successful SSH authentication for `user3`             | Login originated from internal IP `10.0.1.2`                                  |
+| Mar 29 13:24:25    | Privileged activity observed                          | `sudo` and `su` usage resulted in root-level access                           |
+| Mar 29 13:27:22    | Root password modified                                | `passwd: password changed for root`                                           |
+| Mar 29 13:27:26    | Successful SSH login as `root`                        | Authentication occurred shortly after password modification                   |
+| Apr 19 14:47:40    | Apache service manually stopped by `user1` using sudo | `COMMAND=/etc/init.d/apache2 stop` executed from `/opt/software/web/app/repo` |
+| Apr 19 14:47:41    | Forced Apache process termination                     | `killall -9 apache2` suggests aggressive/manual process interruption          |
+| Apr 19 14:47:43    | Apache service restarted                              | Service restored shortly after forced termination                             |
+| Apr 19 14:51–15:01 | Multiple CRON sessions executed as root               | Activity appears consistent with scheduled background tasks                   |
+| Apr 19 15:01:08    | Anomalous HTTP request observed                       | Request to `proxyjudge1.proxyfire.net/fastenv` returned HTTP 404              |
+| Apr 19 22:37:20    | Reverse DNS inconsistency detected by `sshd`          | Logged as `POSSIBLE BREAK-IN ATTEMPT!` for IP `190.166.87.164`                |
+| Apr 19 22:37:24    | Successful remote SSH authentication as `root`        | External IP authenticated successfully via SSH                                |
+| Apr 19 22:37:25    | Interactive root session established                  | `pam_unix(sshd:session): session opened for user root`                        |
+| Apr 19 22:38:00    | New privileged account created                        | User `packet` created with `UID=0` and `GID=0`                                |
+| Apr 19 22:38:09    | Password assigned to newly created account            | `password changed for packet` indicates persistence establishment             |
+| Apr 20 13:02:46    | Multiple failed SSH authentication attempts detected  | Failed password attempts targeting `root` from external IP `209.59.222.166`   |
+| Apr 21 18:28:02    | Access to `/wp-admin/` observed                       | Possible reconnaissance or administrative access attempt                      |
+
+---
+
+# Assessment
+
+The investigation identified multiple suspicious SSH authentication events originating from external IP addresses. Several successful authentications occurred shortly after failed login attempts and reverse DNS inconsistencies flagged by `sshd` as potential break-in attempts.
+
+Most notably, a successful remote SSH authentication as `root` was followed by the creation of a new account (`packet`) configured with `UID=0`, effectively granting root-equivalent privileges. Password assignment activity for the newly created account strongly indicates persistence establishment following privileged access.
+
+Additional findings included:
+
+* privileged Apache service manipulation activity
+* repeated authentication attempts targeting privileged accounts
+* root password modification events
+* anomalous web requests associated with proxy validation/scanning behavior
+
+While some observed Apache activity appeared legitimate (RSS feed polling and WordPress cron operations), the overall sequence of authentication anomalies, privileged activity, and persistence-related actions strongly suggests unauthorized system compromise.
+
+---
+
+# Severity Assessment
+
+## Severity: High
+
+### Justification
+
+* Successful remote authentication as `root`
+* Creation of additional `UID=0` privileged account
+* Root password modification activity
+* Repeated suspicious SSH authentication attempts from external IPs
+* Privileged manipulation of Apache services
+* Indicators consistent with persistence establishment
+
+---
+
+# Scope and Limitations
+
+The investigation was limited to the log sources available within the lab environment.
+
+No direct evidence of:
+
+* malware deployment
+* data exfiltration
+* webshell installation
+* lateral movement
+
+was identified during the reviewed timeframe.
+
+However, the available evidence strongly supports unauthorized privileged access and persistence activity on the affected host.
+
+---
+
+# Recommended Action
+
+Escalation recommended for:
+
+* potential host compromise
+* unauthorized privileged persistence
+* root-level account manipulation
+* further forensic validation and containment activities

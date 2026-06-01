@@ -1,0 +1,9 @@
+Recommendations
+
+- Isolate the affected system from the network
+- Reset credentials associated with privileged accounts
+- Review SSH authentication policies
+- Disable direct root SSH access
+- Review sudo privileges and account integrity
+- Audit persistence mechanisms and scheduled tasks
+- Perform deeper forensic acquisition if available

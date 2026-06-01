@@ -1,0 +1,8 @@
+Recommendations
+
+- Isolate affected hosts from the network
+- Review SMB administrative share access
+- Reset credentials associated with involved systems
+- Investigate remote service creation events
+- Validate endpoint integrity using EDR or forensic tools
+- Monitor for additional lateral movement attempts

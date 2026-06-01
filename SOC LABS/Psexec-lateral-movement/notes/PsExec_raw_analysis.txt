@@ -1,0 +1,56 @@
+Case: PsExec - CyberDefenders
+
+
+[ Initial Traffic Review ]
+
+The provided .pcapng file shows multiple sequential SYN requests originating from several internal hosts, consistent with possible automated scanning or host discovery activity.
+
+Subsequent SMB-related traffic involving references to PsExec activity was identified, suggesting potential remote execution or lateral movement attempts within the environment.
+
+Host 10.0.0.131 generated HTTP browsing activity approximately one minute before suspicious SMB/PsExec-related requests were observed from another internal host. This sequence may indicate that host 10.0.0.131 represents a potential initial compromise point or user-driven execution vector.
+
+At the current stage of the investigation, the evidence supports suspicious lateral movement activity, although the precise initial infection vector has not yet been conclusively confirmed.
+
+
+[ SMB / PsExec Findings ]
+
+Access requests from host 10.0.0.130 to shared resources IPC$ and ADMIN$ on host 10.0.0.133 were observed during the suspicious timeframe.
+
+Shortly afterward, SMB Write Requests associated with PSEXESVC.EXE deployment were identified from 10.0.0.130 toward 10.0.0.133.
+
+Subsequent DCERPC and SVCCTL requests associated with remote service creation activity were also identified during the same timeframe.
+
+The observed sequence of:
+- SMB administrative share access
+- PsExec service binary deployment
+- remote service control activity
+
+is strongly consistent with PsExec-mediated remote execution and lateral movement behavior.
+
+
+[ Analytical Assessment ]
+
+The collected network evidence strongly suggests successful PsExec-based lateral movement activity between internal hosts.
+
+Host 10.0.0.130 appears to operate as the initiating system performing remote administrative activity toward host 10.0.0.133 through SMB administrative shares and remote service deployment mechanisms.
+
+Observed IPC$, ADMIN$, PSEXESVC.EXE, DCERPC, and SVCCTL activity collectively support the hypothesis of remote service creation and command execution typically associated with PsExec operations.
+
+Although the precise initial infection vector has not been fully confirmed, earlier HTTP browsing activity observed from host 10.0.0.131 shortly before the SMB activity may represent a potential initial compromise event requiring further validation.
+
+[ Suggested Severity ]
+
+Severity: High
+
+Justification:
+The investigation identified network activity strongly consistent with PsExec-mediated lateral movement between internal hosts. Administrative SMB share access, remote service deployment behavior, and service control activity were observed involving multiple systems within the environment.
+
+The evidence suggests successful remote execution activity and potential compromise propagation requiring further containment and investigation.
+
+
+[ Escalation Recommendation ]
+
+Escalation recommended.
+
+Reason:
+Observed activity exceeds standard administrative behavior and includes multiple indicators associated with unauthorized remote execution and lateral movement techniques commonly leveraged during post-compromise operations.

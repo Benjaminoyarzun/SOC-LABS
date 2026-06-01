@@ -1,0 +1,22 @@
+Timeline
+
+Initial Phase
+- Sequential SYN requests identified across internal hosts
+
+Potential Initial Access
+- Host 10.0.0.131 generated HTTP browsing activity shortly before SMB activity escalation
+
+Lateral Movement Activity
+- SMB communication established between 10.0.0.130 and 10.0.0.133
+- Tree Connect requests observed to IPC$
+- Tree Connect requests observed to ADMIN$
+
+Remote Deployment
+- SMB Write Requests involving PSEXESVC.EXE identified
+
+Remote Service Activity
+- DCERPC traffic observed
+- SVCCTL requests associated with remote service creation identified
+
+Assessment
+- Activity determined consistent with PsExec-based lateral movement

@@ -1,0 +1,7 @@
+1. Suspicious email received by a single user
+2. Email reviewed and analyzed
+3. Sender domain identified as suspicious
+4. Embedded URLs determined to be non-legitimate
+5. No evidence of interaction or execution identified
+6. Email classified as phishing
+7. User advised to delete the message
