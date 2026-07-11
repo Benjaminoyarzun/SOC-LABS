@@ -1,0 +1,18 @@
+T1059.001 - PowerShell
+
+PowerShell was used to execute commands and initiate the attack chain.
+
+
+T1105 - Ingress Tool Transfer
+
+The system accessed a remote WebDAV resource hosted externally.
+
+
+T1218.011 - Rundll32
+
+The attacker attempted DLL execution using rundll32.
+
+
+T1071.001 - Web Protocols
+
+Communication was performed through a WebDAV resource over HTTP.

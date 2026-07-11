@@ -1,0 +1,18 @@
+Tool:
+windows.malfind
+
+
+Process:
+powershell.exe
+
+
+PID:
+3692
+
+
+Finding:
+
+Multiple PAGE_EXECUTE_READWRITE VAD regions were identified.
+
+These regions require additional analysis but are suspicious
+when combined with remote DLL execution behavior.
